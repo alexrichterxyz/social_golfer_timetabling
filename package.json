@@ -14,7 +14,7 @@
   "author": "Alexander Richter",
   "type": "commonjs",
   "scripts": {
-    "build": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build src/index.html && cp ./public/*.wasm ./dist/"
+    "build": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build src/index.html && cp ./public/*.wasm ./dist/ && touch dist/.nojekyll"
   },
   "devDependencies": {
     "parcel": "^2.15.4"
