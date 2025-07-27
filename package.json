@@ -1,0 +1,22 @@
+{
+  "name": "social_golfer_timetabling",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/alexrichterxyz/social_golfer_timetabling#readme",
+  "bugs": {
+    "url": "https://github.com/alexrichterxyz/social_golfer_timetabling/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrichterxyz/social_golfer_timetabling.git"
+  },
+  "license": "MIT",
+  "author": "Alexander Richter",
+  "type": "commonjs",
+  "scripts": {
+    "build": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build src/index.html && cp ./public/*.wasm ./dist/"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}

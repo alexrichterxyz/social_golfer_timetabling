@@ -1,0 +1,9 @@
+:root {
+	--md-sys-color-primary: #2196f3;    /* Primary: Blue */
+	--md-sys-color-secondary: #ff4081;  /* Secondary: Pink */
+	--background: #f2f2f2;
+}
+
+body {
+	background: var(--background);
+}
