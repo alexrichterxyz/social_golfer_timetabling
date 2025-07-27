@@ -11,23 +11,29 @@ const csvElement = document.getElementById('csv');
 const weeksElement = document.getElementById('weeks');
 const zoneDataElement = document.getElementById('zone-data');
 const errorElement = document.getElementById('error');
-let reportingError = false;
+let isReportingError = false;
+let progress = 0.0;
 
-csvElement.value = '';
-weeksElement.value = config.weeks;
-rolesElement.value = config.roles.join(', ');
+document.addEventListener('DOMContentLoaded', () => {
+    csvElement.value = '';
+    weeksElement.value = config.weeks;
+    rolesElement.value = config.roles.join(', ');
+    progressElement.value = progress;
+});
 
 function reportError(message) {
-    reportingError = true;
+    isReportingError = true;
+    submitElement.disabled = true;
     errorElement.innerText = message;
 }
 
 function resetError() {
-    if(reportingError) {
+    if(isReportingError) {
         errorElement.innerText = '';
+        submitElement.disabled = false;
     }
 
-    reportingError = false;
+    isReportingError = false;
 }
 
 function disableInputs() {
@@ -40,7 +46,6 @@ function enableInputs() {
 
 rolesElement.oninput = (event) => {
     config.roles = event.target.value.split(',').map(e => e.trim());
-    console.log(config.roles)
 }
 
 weeksElement.oninput = (event) => {
@@ -59,7 +64,10 @@ weeksElement.oninput = (event) => {
 csvElement.onchange = (event) => {
     config.zones = {};
     const file = event.target.files[0];
-    if (!file) reportError('Invalid CSV file.');
+    if (!file) {
+        reportError('Invalid CSV file.')
+        return;
+    }
 
     const reader = new FileReader();
 
@@ -200,11 +208,19 @@ function downloadCSV(data) {
     window.open(url, '_blank');
 }
 
+function setProgress(x) {
+    progress = x;
+    progressElement.value = x;
+}
+
 submitElement.onclick = () => {
     // users may change config as the optimization is ongoing
+    setProgress(0.0);
     const submissionConfig = structuredClone(config);
+    const numZones = Object.keys(submissionConfig.zones).length
 
     const workers = {};
+    const workerProgress = {};
     const result = {
         zone: [],
         week: [],
@@ -215,7 +231,6 @@ submitElement.onclick = () => {
     };
 
     for(const [zone, zoneInfo] of Object.entries(submissionConfig.zones)) {
-        console.log(zone)
         const worker = new Worker(new URL('./wasm-worker.js', import.meta.url), {
             type: 'module'
         });
@@ -251,6 +266,16 @@ submitElement.onclick = () => {
                         downloadCSV(result);
                     }
 
+                    setProgress(1.0);
+
+                    break;
+                }
+                case 'progress': {
+                    workerProgress[zone] = payload;
+                    setProgress(Object.values(workerProgress).reduce(
+                        (acc, val) => acc + val,
+                        0
+                    ) / numZones)
                     break;
                 }
                 case 'log': {

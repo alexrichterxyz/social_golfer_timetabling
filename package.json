@@ -14,7 +14,8 @@
   "author": "Alexander Richter",
   "type": "commonjs",
   "scripts": {
-    "build": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build --public-url /social_golfer_timetabling/ src/index.html && cp ./public/*.wasm ./dist/ && touch dist/.nojekyll",
+    "build": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build src/index.html && cp ./public/*.wasm ./dist/ && touch dist/.nojekyll",
+    "build-gh-pages": "rm -rf ./dist/* ./public/* && em++ ./src/cpp/main.cpp -o ./public/optimizer.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"createModule\"' --bind -s ENVIRONMENT=web && parcel build --public-url /social_golfer_timetabling/ src/index.html && cp ./public/*.wasm ./dist/ && touch dist/.nojekyll",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {

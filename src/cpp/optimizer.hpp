@@ -23,6 +23,9 @@ class optimizer {
         return m_result[t_week * m_config.num_groups + t_group];
     }
 
+    protected:
+    virtual void on_finished_week(c_size_t t_week) {}
+
     public:
 
     optimizer(const struct config_t &t_config):
@@ -31,6 +34,10 @@ class optimizer {
     m_colaboration_optimizer(t_config),
     m_role_optimizer(t_config),
     m_table_optimizer(t_config) {}
+
+    const struct config_t &get_config() const {
+        return m_config;
+    }
 
     void optimize_week(c_size_t t_week) {
         // in the following we're generating an array of people (available_people)
@@ -101,6 +108,8 @@ class optimizer {
                 selected_table
             ));
         }
+
+        on_finished_week(t_week);
     }
 
 
@@ -132,13 +141,18 @@ class optimizer {
         c_size_t max_group_members = (m_config.num_people + m_config.num_groups - 1) / m_config.num_groups;
 
         size_vec_t serialization;
-        // for each group and each week we have: person, role, and table
-        serialization.reserve(m_config.num_weeks * m_config.num_groups * max_group_members * 2);
+        serialization.reserve(
+            // for each group and week we store how many members is has
+            m_config.num_weeks * m_config.num_groups
+            //for each group and each week we have: person, role, and table
+            + m_config.num_weeks * m_config.num_groups * max_group_members * 3
+        );
         
         for(std::size_t week = 0; week < m_config.num_weeks; week++) {
             for(std::size_t group = 0; group < m_config.num_groups; group++) {
                 c_size_vec_t &group_members = members_for(week, group);
                 c_size_t table = m_table_optimizer.get_table_for(week, group);
+                serialization.push_back(group_members.size());
 
                 for(std::size_t member_idx = 0; member_idx < group_members.size(); member_idx++) {
                     c_size_t role = member_idx;

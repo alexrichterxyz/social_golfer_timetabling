@@ -3397,6 +3397,7 @@ unexportedSymbols.forEach(unexportedRuntimeSymbol);
 function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
+function report_progress(value) { if (typeof Module.reportProgress === "function") { Module.reportProgress(value); } }
 
 // Imports from the Wasm binary.
 var ___getTypeName = makeInvalidEarlyAccess('___getTypeName');
@@ -3470,7 +3471,9 @@ var wasmImports = {
   /** @export */
   fd_seek: _fd_seek,
   /** @export */
-  fd_write: _fd_write
+  fd_write: _fd_write,
+  /** @export */
+  report_progress
 };
 var wasmExports = await createWasm();
 
