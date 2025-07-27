@@ -1,0 +1,1 @@
+Click [here](https://alexrichterxyz.github.io/social_golfer_timetabling/) to optimize timetables.
