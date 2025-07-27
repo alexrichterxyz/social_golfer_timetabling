@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang=en><script type=importmap>{"imports":{"2wF6P":"/wasm-worker.2ad872a2.js"}}</script><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="IE=edge"><link rel=icon href=/favicon.9899f57c.svg type=image/svg+xml><link rel=stylesheet href=/social_golfer_timetabling.2ec24d89.css><script type=module src=/social_golfer_timetabling.1d0b7d12.js></script><title>Social golfer timetabling</title><meta name=description content="A simple tool to assign people to groups and givem them roles."><body>
+<header>
+	<a href=https://github.com/alexrichterxyz/social_golfer_timetabling>Github</a>
+</header>
+<main>
+	<section>
+		<label for=weeks>Number of weeks:</label>
+		<input id=weeks type=number value=12 min=2 step=1>
+		<label for=roles>Enter roles separated by comma</label>
+		<input id=roles>
+		<p>
+			Upload an initialization CSV file. The file should contain the columns:
+			<ul>
+				<li><em>person</em>: a unique identifier of each person</li>
+				<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
+			</ul>
+		<p></p>
+		<label for=csv>Select a CSV file:</label>
+		<input id=csv type=file accept=.csv>
+		<div>
+			<ul id=zone-data>
+			</ul>
+		</div>
+		<button id=submit>Submit</button><progress id=progress value=0></progress><label for=progress>Progress</label>
+	</section>
+	<p id=error></p>
+</main>
+
