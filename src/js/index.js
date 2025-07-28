@@ -105,12 +105,17 @@ csvElement.onchange = (event) => {
                 resetError();
             }
         );
-        
-        const p = document.createElement('p');
-        p.innerText = `${zone} (${config.zones[zone].people.length} people)`
-        li.appendChild(p);
-        li.appendChild(groupElements.label);
-        li.appendChild(groupElements.input);
+
+        const section = document.createElement('section');
+        const h = document.createElement('h2');
+        const h_img = document.createElement('img')
+        h_img.src = new URL('../img/users-solid-full.svg', import.meta.url);
+        h_img.alt = 'Zone';
+        h.innerText = `${zone} (${config.zones[zone].people.length} people)`;
+        h.appendChild(h_img);
+        section.appendChild(h);
+        section.appendChild(groupElements.label);
+        section.appendChild(groupElements.input);
 
         const tableElements = getZoneInputAndLabel(
             `tables-${2*index+1}`,
@@ -128,10 +133,10 @@ csvElement.onchange = (event) => {
                 resetError();
             }
         );
-        li.appendChild(tableElements.label);
-        li.appendChild(tableElements.input);
+        section.appendChild(tableElements.label);
+        section.appendChild(tableElements.input);
 
-        return li;        
+        return section;        
     }
     
     reader.onload = (e) => {

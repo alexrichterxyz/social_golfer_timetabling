@@ -17,33 +17,34 @@
 	<div id="progress"></div>
 </header>
 <main>
-	<section>
-		<label for="weeks">
-			<img width="32" src="img/calendar-week-solid-full.svg" alt="CSV"/>Number of weeks:
-		</label>
-		<input id="weeks" type="number" value="12" min="2" step="1"/>
-		<label for="roles">
-			<img width="32" src="img/crown-solid-full.svg" alt="CSV"/>
-			Enter roles separated by comma
-		</label>
-		<input id="roles" type="text"/>
-		<p>
-			Upload an initialization CSV file. The file should contain the columns:
-			<ul>
-				<li><em>person</em>: a unique identifier of each person</li>
-				<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
-			</ul>
-		</p>
-		<label for="csv">
-			<img width="32" src="img/file-csv-solid-full.svg" alt="CSV"/>Select a CSV file:
-		</label>
-		<input id="csv" type="file" accept=".csv"/>
-		<div>
-			<ul id="zone-data">
-			</ul>
-		</div>
-	</section>
-	<p id="error"></p>
+	<div class="col">
+		<section>
+			<h2><img src="img/calendar-week-solid-full.svg" alt="Weeks">1. Weeks</h2>
+			<label for="weeks">Number of weeks:</label>
+			<input id="weeks" type="number"/>
+		</section>
+		<section>
+			<h2><img src="img/crown-solid-full.svg" alt="Roles">2. Roles</h2>
+			<label for="roles">Enter role names separated by a comma:</label>
+			<input type="text" placeholder="Leader, Scribe, ..." id="roles"/>
+		</section>
+		<section>
+			<h2><img src="img/file-csv-solid-full.svg" alt="CSV"/>3. Names and zones</h2>
+			<p>
+				Upload an initialization CSV file. The file should contain the columns:
+				<ul>
+					<li><em>person</em>: a unique identifier of each person</li>
+					<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
+				</ul>
+			</p>
+			<label for="csv" class="file-input-wrapper">
+				Select CSV
+				<input id="csv" type="file" accept=".csv"/>
+			</label>
+		</section>
+	</div>
+	<div class="col" id="zone-data">
+	</div>
 </main>
 </body>
 </html>

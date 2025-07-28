@@ -16,23 +16,92 @@ body {
 header, main {
 	max-width: 1140px;
 	margin: 24px auto 0 auto;
-	background-color: orange;
+}
+
+main {
+	display: flex;
+	gap: 24px;
 }
 
 header {
 	height: 64px;
 	border-radius: 32px;
-	background-color: #e0e0e0;
+	background-color: #e8e8e8;
 	position: relative;
 	overflow: hidden;
 }
 
 button {
-	border: none;
+	all: unset;
 	padding: 0 12px;
 	background-color: var(--md-sys-color-primary);
 	color: #fff;
 	cursor: pointer;
+}
+
+section {
+	background-color: #e8e8e8;
+	border-radius: 32px;
+	padding: 16px;
+	display: block;
+}
+
+section input[type="number"], section input {
+	all: unset;
+	height: 48px;
+	border-radius: 24px;
+	background: #d0d0d0;
+	font-size: 24px;
+	text-indent: 24px;
+	width: 100%;
+	color: #606060;
+}
+
+label {
+	color: #606060;
+	font-size: 16px;
+	margin-left: 16px;
+}
+
+.file-input-wrapper {
+	display: block;
+	float: left;
+	margin: 0 auto;
+	cursor: pointer;
+	text-align: center;
+	line-height: 48px;
+	padding: 0 64px;
+	height: 48px;
+	border-radius: 24px;
+	background-color: #606060;
+	color: #f2f2f2;
+	font-size: 24px;
+}
+
+.file-input-wrapper input[type="file"] {
+	display: none;
+}
+
+section h2 {
+	font-size: 24px;
+	line-height: 32px;
+	margin: 0 0 16px 0;
+	padding: 0;
+}
+
+h2 img {
+	height: 32px;
+	float: left;
+	margin-right: 8px;
+}
+
+
+
+.col {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
 
 #submit {
