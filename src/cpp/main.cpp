@@ -11,12 +11,12 @@ EM_JS(void, report_progress, (double value), {
 
 class custom_optimizer: public optimizer {
 	public:
-	
+
 	custom_optimizer(const struct config_t &t_config): optimizer(t_config) {}
 
 	private:
 	void on_finished_week(c_size_t t_week) override {
-		const double progress = static_cast<double>(t_week) / get_config().num_weeks;
+		const double progress = (static_cast<double>(t_week) + 1.0) / get_config().num_weeks;
 		report_progress(progress);
 	}
 };
