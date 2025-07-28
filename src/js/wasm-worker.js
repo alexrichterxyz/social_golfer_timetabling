@@ -1,4 +1,4 @@
-import createModule from '../../public/optimizer.js'
+import createModule from '../../build/optimizer.js'
 
 const modulePromise = createModule();
 
