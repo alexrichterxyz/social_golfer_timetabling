@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     csvElement.value = '';
     weeksElement.value = config.weeks;
     rolesElement.value = config.roles.join(', ');
-    progressElement.value = progress;
+    setProgress(progress);
 });
 
 function reportError(message) {
@@ -210,7 +210,7 @@ function downloadCSV(data) {
 
 function setProgress(x) {
     progress = x;
-    progressElement.value = x;
+    progressElement.style.width = `${progress * 100}%`;
 }
 
 submitElement.onclick = () => {
@@ -264,9 +264,8 @@ submitElement.onclick = () => {
 
                     if(Object.keys(workers).length === 0) {
                         downloadCSV(result);
+                        setProgress(0.0);
                     }
-
-                    setProgress(1.0);
 
                     break;
                 }

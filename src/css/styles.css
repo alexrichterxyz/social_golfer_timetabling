@@ -1,9 +1,71 @@
 :root {
 	--md-sys-color-primary: #2196f3;    /* Primary: Blue */
 	--md-sys-color-secondary: #ff4081;  /* Secondary: Pink */
-	--background: #f2f2f2;
+	--background: #f0f0f0;
+	--font: #000;
 }
 
 body {
 	background: var(--background);
+	color: var(--font);
+	font-family: Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0 24px;
+}
+
+header, main {
+	max-width: 1140px;
+	margin: 24px auto 0 auto;
+	background-color: orange;
+}
+
+header {
+	height: 64px;
+	border-radius: 32px;
+	background-color: #e0e0e0;
+	position: relative;
+	overflow: hidden;
+}
+
+button {
+	border: none;
+	padding: 0 12px;
+	background-color: var(--md-sys-color-primary);
+	color: #fff;
+	cursor: pointer;
+}
+
+#submit {
+	position: inherit;
+	float: right;	
+	height: 32px;
+	margin: 16px;
+	border-radius: 16px;
+	z-index: 2;
+}
+
+#github-link {
+	position: inherit;
+	z-index: 2;
+	height: 32px;
+	width: 32px;
+	float: left;
+	display: block;
+	margin: 16px;
+	background-image: url(../img/github-brands-solid-full.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#progress {
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: inherit;
+	background-color: var(--md-sys-color-primary);
+	opacity: 25%;
+	transition: width 0.1s ease;
 }

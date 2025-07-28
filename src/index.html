@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+	<link rel="icon" href="./img/group-arrows-rotate-solid-full.svg" type="image/svg+xml" />
 	<link rel="stylesheet" href="./css/styles.css">
 	<script type="module" src="./js/index.js"></script>
 	<title>Social golfer timetabling</title>
@@ -12,13 +12,20 @@
 </head>
 <body>
 <header>
-	<a href="https://github.com/alexrichterxyz/social_golfer_timetabling">Github</a>
+	<a id="github-link" href="https://github.com/alexrichterxyz/social_golfer_timetabling"></a>
+	<button id="submit">Compute</button>
+	<div id="progress"></div>
 </header>
 <main>
 	<section>
-		<label for="weeks">Number of weeks:</label>
+		<label for="weeks">
+			<img width="32" src="img/calendar-week-solid-full.svg" alt="CSV"/>Number of weeks:
+		</label>
 		<input id="weeks" type="number" value="12" min="2" step="1"/>
-		<label for="roles">Enter roles separated by comma</label>
+		<label for="roles">
+			<img width="32" src="img/crown-solid-full.svg" alt="CSV"/>
+			Enter roles separated by comma
+		</label>
 		<input id="roles" type="text"/>
 		<p>
 			Upload an initialization CSV file. The file should contain the columns:
@@ -27,13 +34,14 @@
 				<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
 			</ul>
 		</p>
-		<label for="csv">Select a CSV file:</label>
+		<label for="csv">
+			<img width="32" src="img/file-csv-solid-full.svg" alt="CSV"/>Select a CSV file:
+		</label>
 		<input id="csv" type="file" accept=".csv"/>
 		<div>
 			<ul id="zone-data">
 			</ul>
 		</div>
-		<button id="submit">Submit</button><progress id="progress" value="0" max="1"></progress><label for="progress">Progress</label>
 	</section>
 	<p id="error"></p>
 </main>
