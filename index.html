@@ -1,37 +1,47 @@
-<!DOCTYPE html><html lang=en><script type=importmap>{"imports":{"2wF6P":"/social_golfer_timetabling/wasm-worker.17e1e1a2.js","6YfdT":"/social_golfer_timetabling/users-solid-full.921288cf.svg"}}</script><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="IE=edge"><link rel=icon href=/social_golfer_timetabling/group-arrows-rotate-solid-full.7afbe5d1.svg type=image/svg+xml><link rel=stylesheet href=/social_golfer_timetabling/social_golfer_timetabling.2c94f5bd.css><script type=module src=/social_golfer_timetabling/social_golfer_timetabling.110971d3.js></script><title>Social golfer timetabling</title><meta name=description content="A simple tool to assign people to groups and givem them roles."><body>
+<!DOCTYPE html><html lang=en><script type=importmap>{"imports":{"2wF6P":"/wasm-worker.17e1e1a2.js"}}</script><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="IE=edge"><link rel=icon href=/favicon.9899f57c.svg type=image/svg+xml><link rel=stylesheet href=/social_golfer_timetabling.ef3874e9.css><script type=module src=/social_golfer_timetabling.e6ed3666.js></script><title>Social golfer timetabling</title><meta name=description content="A simple tool to assign people to groups and givem them roles."><body>
 <header>
 	<a id=github-link href=https://github.com/alexrichterxyz/social_golfer_timetabling></a>
-	<button id=submit>Compute</button>
+	<button id=submit disabled=true>▶ Compute</button>
+	<div id=error></div>
 	<div id=progress></div>
 </header>
 <main>
-	<div class=col>
-		<section>
-			<h2><img src=/social_golfer_timetabling/calendar-week-solid-full.31566fff.svg alt=Weeks>1. Weeks</h2>
-			<label for=weeks>Number of weeks:</label>
+	<section id=main-data>
+		<label>
+			<div>Number of weeks</div>
 			<input id=weeks type=number>
-		</section>
-		<section>
-			<h2><img src=/social_golfer_timetabling/crown-solid-full.f87acaf6.svg alt=Roles>2. Roles</h2>
-			<label for=roles>Enter role names separated by a comma:</label>
-			<input placeholder="Leader, Scribe, ..." id=roles>
-		</section>
-		<section>
-			<h2><img src=/social_golfer_timetabling/file-csv-solid-full.01b6df0f.svg alt=CSV>3. Names and zones</h2>
-			<p>
-				Upload an initialization CSV file. The file should contain the columns:
-				<ul>
-					<li><em>person</em>: a unique identifier of each person</li>
-					<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
-				</ul>
-			<p></p>
-			<label for=csv class=file-input-wrapper>
-				Select CSV
-				<input id=csv type=file accept=.csv>
-			</label>
-		</section>
-	</div>
-	<div class=col id=zone-data>
-	</div>
+		</label>
+		<label>
+			<div>Roles separated by comma</div>
+			<textarea id=roles></textarea>
+		</label>
+		<p>Upload a CSV with the columns </p>
+		<ul>
+			<li><strong>Name</strong>: each person's name should be unique</li>
+			<li><strong>Zone</strong> (optional): only people within the same zone are matched with each other</li>
+		</ul>
+		<p>
+		Here is an <a href=/up_/example_csv_input.csv> example CSV template</a>.
+		</p>
+		<label class=file-picker>
+			<div>Select a CSV file</div>
+			<input id=csv type=file>
+		</label>
+	</section>
+	<section id=zone-data>
+		<table id=zone-table style=display:none>
+			<thead>
+				<tr>
+					<th>Zone</th>
+					<th># of people</th>
+					<th>Avg. people per group</th>
+					<th># of groups</th>
+					<th># of tables</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
 </main>
 
