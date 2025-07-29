@@ -11,6 +11,8 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	margin: 0;
 	padding: 0 24px;
+	font-size: 14px;
+	color: #606060;
 }
 
 header, main {
@@ -20,7 +22,8 @@ header, main {
 
 main {
 	display: flex;
-	gap: 24px;
+	flex-direction: row;
+	gap: 2rem;
 }
 
 header {
@@ -39,71 +42,6 @@ button {
 	cursor: pointer;
 }
 
-section {
-	background-color: #e8e8e8;
-	border-radius: 32px;
-	padding: 16px;
-	display: block;
-}
-
-section input[type="number"], section input {
-	all: unset;
-	height: 48px;
-	border-radius: 24px;
-	background: #d0d0d0;
-	font-size: 24px;
-	text-indent: 24px;
-	width: 100%;
-	color: #606060;
-}
-
-label {
-	color: #606060;
-	font-size: 16px;
-	margin-left: 16px;
-}
-
-.file-input-wrapper {
-	display: block;
-	float: left;
-	margin: 0 auto;
-	cursor: pointer;
-	text-align: center;
-	line-height: 48px;
-	padding: 0 64px;
-	height: 48px;
-	border-radius: 24px;
-	background-color: #606060;
-	color: #f2f2f2;
-	font-size: 24px;
-}
-
-.file-input-wrapper input[type="file"] {
-	display: none;
-}
-
-section h2 {
-	font-size: 24px;
-	line-height: 32px;
-	margin: 0 0 16px 0;
-	padding: 0;
-}
-
-h2 img {
-	height: 32px;
-	float: left;
-	margin-right: 8px;
-}
-
-
-
-.col {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-}
-
 #submit {
 	position: inherit;
 	float: right;	
@@ -111,6 +49,11 @@ h2 img {
 	margin: 16px;
 	border-radius: 16px;
 	z-index: 2;
+}
+
+#submit:disabled {
+	background-color: #606060;
+	cursor: not-allowed;
 }
 
 #github-link {
@@ -127,6 +70,19 @@ h2 img {
 	background-size: cover;
 }
 
+
+#error {
+	position: absolute;
+	line-height: 64px;
+	text-align: center;
+	width: 100%;
+	left: 0;
+	margin: 0 auto;
+	color: var(--md-sys-color-secondary);
+	font-size: 16px;
+}
+
+
 #progress {
 	z-index: 1;
 	position: absolute;
@@ -138,3 +94,80 @@ h2 img {
 	opacity: 25%;
 	transition: width 0.1s ease;
 }
+
+#main-data {
+	width: 256px; 
+	flex-shrink: 0;
+}
+
+label {
+	display: block;
+	margin-bottom: 16px;
+	width: 100%;
+}
+
+label div {
+	padding: 0 0 4px 0;
+	font-size: 14px;
+	color: #606060;
+}
+
+input, textarea {
+	all: unset;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #fff;
+	width: 100%;
+	border-radius: 8px;
+	line-height: 24px;
+	text-indent: 8px;
+	font-size: 16px;
+}
+
+input {
+	height: 24px;
+	line-height: 32px;
+}
+
+textarea {
+	height: 48px;
+}
+
+.file-picker {
+	border: 1px solid #606060;
+	height: 32px;
+	display: inline-block;
+	width: auto;
+	padding: 0 16px;
+	border-radius: 16px;
+	line-height: 32px;
+	text-align: center;
+	color: #606060;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.file-picker input {
+	display: none;
+}
+
+#zone-data {
+  flex: 1;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 14px;
+}
+
+td, th {
+  border-bottom: 1px solid #ccc; /* line between rows */
+  padding: 8px;
+  text-align: left;
+}
+
+#zone-data th:nth-child(2), #zone-data th:nth-child(3), #zone-data td:nth-child(2), #zone-data td:nth-child(3) {
+  text-align: right;
+}
+

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link rel="icon" href="./img/group-arrows-rotate-solid-full.svg" type="image/svg+xml" />
+	<link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
 	<link rel="stylesheet" href="./css/styles.css">
 	<script type="module" src="./js/index.js"></script>
 	<title>Social golfer timetabling</title>
@@ -13,38 +13,48 @@
 <body>
 <header>
 	<a id="github-link" href="https://github.com/alexrichterxyz/social_golfer_timetabling"></a>
-	<button id="submit">Compute</button>
+	<button id="submit" disabled="true">&#9654; Compute</button>
+	<div id="error"></div>
 	<div id="progress"></div>
 </header>
 <main>
-	<div class="col">
-		<section>
-			<h2><img src="img/calendar-week-solid-full.svg" alt="Weeks">1. Weeks</h2>
-			<label for="weeks">Number of weeks:</label>
-			<input id="weeks" type="number"/>
-		</section>
-		<section>
-			<h2><img src="img/crown-solid-full.svg" alt="Roles">2. Roles</h2>
-			<label for="roles">Enter role names separated by a comma:</label>
-			<input type="text" placeholder="Leader, Scribe, ..." id="roles"/>
-		</section>
-		<section>
-			<h2><img src="img/file-csv-solid-full.svg" alt="CSV"/>3. Names and zones</h2>
-			<p>
-				Upload an initialization CSV file. The file should contain the columns:
-				<ul>
-					<li><em>person</em>: a unique identifier of each person</li>
-					<li><em>zone</em> (optional): a unique identifier of the zone associated with each student</li>
-				</ul>
-			</p>
-			<label for="csv" class="file-input-wrapper">
-				Select CSV
-				<input id="csv" type="file" accept=".csv"/>
-			</label>
-		</section>
-	</div>
-	<div class="col" id="zone-data">
-	</div>
+	<section id="main-data">
+		<label>
+			<div>Number of weeks</div>
+			<input id="weeks" type="number" />
+		</label>
+		<label>
+			<div>Roles separated by comma</div>
+			<textarea id="roles"></textarea>
+		</label>
+		<p>Upload a CSV with the columns </p>
+		<ul>
+			<li><strong>Name</strong>: each person's name should be unique</li>
+			<li><strong>Zone</strong> (optional): only people within the same zone are matched with each other</li>
+		</ul>
+		<p>
+		Here is an <a href="../example_csv_input.csv"> example CSV template</a>.
+		</p>
+		<label class="file-picker">
+			<div>Select a CSV file</div>
+			<input id="csv" type="file"/>
+		</label>
+	</section>
+	<section id="zone-data">
+		<table id="zone-table" style="display: none;">
+			<thead>
+				<tr>
+					<th>Zone</th>
+					<th># of people</th>
+					<th>Avg. people per group</th>
+					<th># of groups</th>
+					<th># of tables</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
 </main>
 </body>
 </html>
