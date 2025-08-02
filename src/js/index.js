@@ -1,3 +1,5 @@
+import './test.js'
+
 const config = {
     zones: {},
     weeks: 12,
