@@ -24,11 +24,11 @@ class optimizer {
     }
 
     protected:
-    virtual void on_finished_week(c_size_t t_week) {}
+    inline virtual void on_finished_week(c_size_t t_week) {}
 
     public:
 
-    optimizer(const struct config_t &t_config):
+    inline optimizer(const struct config_t &t_config):
     m_config(t_config),
     m_result(t_config.num_weeks * t_config.num_groups),
     m_colaboration_optimizer(t_config),
@@ -39,7 +39,7 @@ class optimizer {
         return m_config;
     }
 
-    void optimize_week(c_size_t t_week) {
+    inline void optimize_week(c_size_t t_week) {
         // in the following we're generating an array of people (available_people)
         // who haven't been allocated to groups yet
         std::bitset<MAX_PEOPLE> allocated_people_set;
@@ -113,7 +113,7 @@ class optimizer {
     }
 
 
-    void optimize() {
+    inline void optimize() {
         m_colaboration_optimizer.reset();
         m_role_optimizer.reset();
         m_table_optimizer.reset();
@@ -137,7 +137,7 @@ class optimizer {
 
     }
 
-    size_vec_t serialize() {
+    inline size_vec_t serialize() {
         c_size_t max_group_members = (m_config.num_people + m_config.num_groups - 1) / m_config.num_groups;
 
         size_vec_t serialization;
@@ -167,20 +167,5 @@ class optimizer {
         return  serialization;
     }
 };
-
-
-
-void solve(c_size_t num_people, c_size_t num_weeks, c_size_t num_groups, c_size_t num_roles, c_size_t num_tables) {
-    struct config_t config;
-    config.num_groups = num_groups;
-    config.num_people = num_people;
-    config.num_roles = num_roles;
-    config.num_weeks = num_weeks;
-    config.num_tables = num_tables;
-
-    optimizer optimizer_obj(config);
-    optimizer_obj.optimize();
-}
-
 
 #endif // #ifndef OPTIMIZER

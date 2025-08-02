@@ -14,13 +14,14 @@ class collaboration_optimizer {
     size_vec_t m_tmp;
 
     public:
-    collaboration_optimizer(const struct config_t &t_config):
+    
+    inline collaboration_optimizer(const struct config_t &t_config):
     m_config(t_config),
     m_counts(t_config.num_people * t_config.num_people, 0) {
         m_tmp.reserve(t_config.num_people);
     };
 
-    void record(c_size_vec_t &t_group_members, c_size_t t_new_member) {
+    inline void record(c_size_vec_t &t_group_members, c_size_t t_new_member) {
         for(const auto member: t_group_members) {
             m_counts[m_config.num_people * member + t_new_member]++;
             m_counts[m_config.num_people * t_new_member + member]++;
@@ -28,7 +29,7 @@ class collaboration_optimizer {
     }
 
     // get sample of best new group members
-    c_size_vec_t &optimize(c_size_vec_t &t_group_members, c_size_vec_t &t_available_people) {
+    inline c_size_vec_t &optimize(c_size_vec_t &t_group_members, c_size_vec_t &t_available_people) {
         // if only one option remaining, return that option
         if(t_available_people.size() == 1) {
             return t_available_people;
@@ -62,14 +63,14 @@ class collaboration_optimizer {
         return m_tmp;
     }
 
-    void reset() {
+    inline void reset() {
         std::fill(m_counts.begin(), m_counts.end(), 0);
     }
 
     friend std::ostream& operator<<(std::ostream& t_os, const collaboration_optimizer& t_optimizer);
 };
 
-// print collaboration cout matrix
+// print collaboration count matrix
 std::ostream& operator<<(std::ostream& t_os, const collaboration_optimizer& t_optimizer) {
     c_size_t num_people = t_optimizer.m_config.num_people;
     

@@ -22,14 +22,14 @@ private:
 
 public:
 
-    table_optimizer(const struct config_t t_config): 
+    inline table_optimizer(const struct config_t t_config): 
     m_config(t_config),
     m_counts(t_config.num_tables * t_config.num_people, 0),
     m_allocation(t_config.num_weeks * t_config.num_groups, 0) {
         m_tmp.reserve(m_config.num_people);
     }
 
-    c_size_vec_t &optimize(c_size_t t_week, c_size_vec_t &t_group_members, c_size_vec_t &t_available_people) {
+    inline c_size_vec_t &optimize(c_size_t t_week, c_size_vec_t &t_group_members, c_size_vec_t &t_available_people) {
         // if there is only one option to choose from, return that option
         // in the first week, noone has been at any table yet, so skip optimization
         if(t_available_people.size() == 1 || t_week == 0) {
@@ -63,7 +63,7 @@ public:
         return m_tmp;
     }
 
-    void record(c_size_t t_week, c_size_t t_group, c_size_vec_t t_group_members, c_size_t t_table) {
+    inline void record(c_size_t t_week, c_size_t t_group, c_size_vec_t t_group_members, c_size_t t_table) {
         for(const auto member: t_group_members) {
             m_counts[t_table * m_config.num_people + member]++;
         }
@@ -71,11 +71,11 @@ public:
         m_allocation[t_week * m_config.num_groups + t_group] = t_table;
     }
 
-    std::size_t get_table_for(c_size_t t_week, c_size_t t_group) {
+    inline std::size_t get_table_for(c_size_t t_week, c_size_t t_group) const {
         return m_allocation[t_week * m_config.num_groups + t_group];
     }
 
-    c_size_vec_t &best_tables_for(c_size_vec_t &t_group_members, c_size_vec_t &t_available_tables) {
+    inline c_size_vec_t &best_tables_for(c_size_vec_t &t_group_members, c_size_vec_t &t_available_tables) {
         // if there is only one option to choose from, return that option
         if(t_available_tables.size() == 1) {
             return t_available_tables;
@@ -105,7 +105,7 @@ public:
         return m_tmp;
     }
 
-    void reset() {
+    inline void reset() {
         std::fill(m_allocation.begin(), m_allocation.end(), 0);
         std::fill(m_counts.begin(), m_counts.end(), 0);
     }

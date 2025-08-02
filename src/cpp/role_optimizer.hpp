@@ -13,7 +13,7 @@ private:
 
 public:
 
-    role_optimizer(const struct config_t &t_config): 
+    inline role_optimizer(const struct config_t &t_config): 
     m_config(t_config),
     m_roles(t_config.num_people) {
         m_tmp.reserve(m_config.num_people);
@@ -23,7 +23,7 @@ public:
         }
     }
 
-    c_size_vec_t &optimize(c_size_t t_role, c_size_vec_t &t_available_people) {
+    inline c_size_vec_t &optimize(c_size_t t_role, c_size_vec_t &t_available_people) {
         // only optimize for roles that are neccessary
         // if there is only one option, return the option
         if(t_role >= m_config.num_roles || t_available_people.size() == 1) {
@@ -64,13 +64,13 @@ public:
         return m_tmp;
     }
 
-    void reset() {
+    inline void reset() {
         for(size_vec_t &person_roles: m_roles) {
             person_roles.clear();
         }
     }
 
-    void record(c_size_t t_person, c_size_t t_role) {
+    inline void record(c_size_t t_person, c_size_t t_role) {
         m_roles[t_person].push_back(t_role);
     }
 
