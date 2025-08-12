@@ -1,5 +1,6 @@
 import './test.js'
 
+
 const config = {
     zones: {},
     weeks: 12,
@@ -61,6 +62,24 @@ weeksElement.oninput = (event) => {
 
     config.weeks = weeks;
     resetError();
+}
+
+function parseCSVLine(line) {
+  const out = [];
+  let cur = "", inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+      else { inQuotes = !inQuotes; }
+    } else if (ch === ',' && !inQuotes) {
+      out.push(cur); cur = "";
+    } else {
+      cur += ch;
+    }
+  }
+  out.push(cur);
+  return out;
 }
 
 
@@ -167,7 +186,7 @@ csvElement.onchange = (event) => {
             reportError('CSV requires at least 2 rows.');
         }
 
-        const colNames = rows[0].toLowerCase().split(',').map(e => e.trim());
+        const colNames = parseCSVLine(rows[0].toLowerCase()).map(e => e.trim());
         const personIndex = colNames.indexOf('name');
 
         if(personIndex === -1) {
@@ -185,7 +204,7 @@ csvElement.onchange = (event) => {
                 continue;
             }
 
-            const values = row.split(',').map(e => e.trim());
+            const values = parseCSVLine(row).map(e => e.trim());
 
             if(values.length <= minValueIndex) {
                 reportError('Invalid CSV file.');
