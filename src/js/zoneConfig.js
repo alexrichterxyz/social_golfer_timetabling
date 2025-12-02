@@ -121,12 +121,12 @@ class ZoneConfigRow extends HTMLElement {
             return;
         }
 
-        this.#numTables = newNumTables;
-        this.#resetNumTablesError();
-
-        if(this.#numTables >= this.#numGroups) {
+        if(newNumTables >= this.#numGroups) {
             return;
         }
+
+        this.#numTables = newNumTables;
+        this.#resetNumTablesError();
 
         this.#numGroups = this.#numTables;
         this.#numGroupsInput.value = this.#numGroups;
