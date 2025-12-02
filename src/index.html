@@ -6,54 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
 	<link rel="stylesheet" href="./css/styles.css">
-	<script type="module" src="./js/index.js"></script>
+	<script type="module" src="./js/index.js" defer></script>
 	<title>Social golfer timetabling</title>
     <meta name="description" content="A simple tool to assign people to groups and givem them roles." />
 </head>
 <body>
 <header>
 	<a id="github-link" href="https://github.com/alexrichterxyz/social_golfer_timetabling"></a>
-	<button id="submit" disabled="true">&#9654; Compute</button>
-	<div id="error"></div>
-	<div id="progress"></div>
+	<button id="compute">&#9654; Compute</button>
+	<progress-bar></progress-bar>
 </header>
 <main>
-	<section id="main-data">
-		<label>
-			<div>Number of weeks</div>
-			<input id="weeks" type="number" />
-		</label>
-		<label>
-			<div>Roles separated by comma</div>
-			<textarea id="roles"></textarea>
-		</label>
-		<p>Upload a CSV with the columns </p>
-		<ul>
-			<li><strong>Name</strong>: each person's name should be unique within each zone</li>
-			<li><strong>Zone</strong> (optional): only people within the same zone are matched with each other</li>
-		</ul>
-		<p>
-		Here is an <a href="../example_csv_input.csv"> example CSV template</a>.
-		</p>
-		<label class="file-picker">
-			<div>Select a CSV file</div>
-			<input id="csv" type="file"/>
-		</label>
+	<section style="display: flex; flex-direction: row;align-items: stretch; gap: 16px;">
+		<csv-picker style="width: 200px;"></csv-picker>
+		<week-input style="width: 200px;"></week-input>
+		<roles-input style="flex: 1;"></roles-input>
 	</section>
-	<section id="zone-data">
-		<table id="zone-table" style="display: none;">
-			<thead>
-				<tr>
-					<th>Zone</th>
-					<th># of people</th>
-					<th>Avg. people per group</th>
-					<th># of groups</th>
-					<th># of tables</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+	<section>
+		<zone-config-table style="display: none;"></zone-config-table>
+		<img id="instructions" src="./img/instructions.svg" alt="Select a CSV with columns name and zone.">
 	</section>
 </main>
 </body>

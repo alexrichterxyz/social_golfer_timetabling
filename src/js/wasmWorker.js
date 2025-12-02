@@ -13,14 +13,18 @@ async function optimize(config) {
     }
 
     const serialized = Module.optimize(
-        config.groups, config.people.length, config.roles.length, config.tables, config.weeks
+        config.numGroups,
+        config.people.length,
+        config.roles.length,
+        config.numTables,
+        config.numWeeks
     );
 
     const result = {person: [], group: [], role: [], table: [], week: []};
 
     let i = 0;
-    for(let week = 0; week < config.weeks; week++) {
-        for(let group = 0; group < config.groups; group++) {
+    for(let week = 1; week <= config.numWeeks; week++) {
+        for(let group = 1; group <= config.numGroups; group++) {
             const memberCount = serialized.get(i++)
             
             for(let memberIdx = 0; memberIdx < memberCount; memberIdx++) {
@@ -30,8 +34,8 @@ async function optimize(config) {
                 const table = serialized.get(i++)+1
 
                 result.person.push(person);
-                result.week.push(week+1);
-                result.group.push(group+1);
+                result.week.push(week);
+                result.group.push(group);
                 result.role.push(role);
                 result.table.push(table);
             }
@@ -46,6 +50,9 @@ async function optimize(config) {
 }
 
 self.onmessage = async (e) => {
+    // potentially wrap methods in try catch
+    // and send message back on error
+
     switch(e.data.operation) {
         case 'optimize': {
             optimize(e.data.payload);

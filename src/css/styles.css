@@ -2,7 +2,7 @@
 	--md-sys-color-primary: #2196f3;    /* Primary: Blue */
 	--md-sys-color-secondary: #ff4081;  /* Secondary: Pink */
 	--background: #f0f0f0;
-	--font: #000;
+	--font: #606060;;
 }
 
 body {
@@ -10,164 +10,61 @@ body {
 	color: var(--font);
 	font-family: Helvetica, Arial, sans-serif;
 	margin: 0;
-	padding: 0 24px;
 	font-size: 14px;
-	color: #606060;
-}
-
-header, main {
-	max-width: 1140px;
-	margin: 24px auto 0 auto;
-}
-
-main {
 	display: flex;
-	flex-direction: row;
-	gap: 2rem;
 }
 
 header {
+	position: fixed;
+	top: 24px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: calc(100% - 48px);
+	max-width: 1140px;
 	height: 64px;
-	border-radius: 32px;
-	background-color: #e8e8e8;
-	position: relative;
+	background-color: #fff;
 	overflow: hidden;
+	border-radius: 32px;
 }
 
-button {
-	all: unset;
-	padding: 0 12px;
-	background-color: var(--md-sys-color-primary);
-	color: #fff;
-	cursor: pointer;
+main {
+	width: calc(100% - 48px);
+	max-width: 1140px;
+	margin: 112px auto 0 auto;
 }
 
-#submit {
-	position: inherit;
-	float: right;	
-	height: 32px;
-	margin: 16px;
-	border-radius: 16px;
-	z-index: 2;
+#instructions {
+	width: 50%;
+	display: block;
+	margin: 64px auto 0 auto;
 }
 
-#submit:disabled {
-	background-color: #606060;
-	cursor: not-allowed;
+progress-bar {
+	z-index: 0;
 }
 
 #github-link {
-	position: inherit;
-	z-index: 2;
 	height: 32px;
-	width: 32px;
-	float: left;
-	display: block;
-	margin: 16px;
-	background-image: url(../img/github-brands-solid-full.svg);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-}
-
-
-#error {
 	position: absolute;
-	line-height: 64px;
-	text-align: center;
-	width: 100%;
-	left: 0;
-	margin: 0 auto;
-	color: var(--md-sys-color-secondary);
-	font-size: 16px;
-}
-
-
-#progress {
-	z-index: 1;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 0%;
-	height: inherit;
-	background-color: var(--md-sys-color-primary);
-	opacity: 25%;
-	transition: width 0.1s ease;
-}
-
-#main-data {
-	width: 256px; 
-	flex-shrink: 0;
-}
-
-label {
-	display: block;
-	margin-bottom: 16px;
-	width: 100%;
-}
-
-label div {
-	padding: 0 0 4px 0;
-	font-size: 14px;
-	color: #606060;
-}
-
-input, textarea {
-	all: unset;
-	width: 100%;
-	box-sizing: border-box;
-	background-color: #fff;
-	width: 100%;
-	border-radius: 8px;
-	line-height: 24px;
-	text-indent: 8px;
-	font-size: 16px;
-}
-
-input {
-	height: 24px;
-	line-height: 32px;
-}
-
-textarea {
+	top: 8px;
+	left: 8px;
+	width: 48px;
 	height: 48px;
+	background-image: url("../img/github-brands-solid-full.svg");
+	background-size: cover;
+	z-index: 1;
 }
 
-.file-picker {
-	border: 1px solid #606060;
+#compute {
+	all: unset;
+	background-color: var(--md-sys-color-primary);
+	color: #fff;
 	height: 32px;
-	display: inline-block;
-	width: auto;
-	padding: 0 16px;
 	border-radius: 16px;
-	line-height: 32px;
-	text-align: center;
-	color: #606060;
-	cursor: pointer;
-	box-sizing: border-box;
+	padding: 0 8px;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	z-index: 1;
 }
-
-.file-picker input {
-	display: none;
-}
-
-#zone-data {
-  flex: 1;
-}
-
-table {
-	border-collapse: collapse;
-	width: 100%;
-	font-size: 14px;
-}
-
-td, th {
-  border-bottom: 1px solid #ccc; /* line between rows */
-  padding: 8px;
-  text-align: left;
-}
-
-#zone-data th:nth-child(2), #zone-data th:nth-child(3), #zone-data td:nth-child(2), #zone-data td:nth-child(3) {
-  text-align: right;
-}
-
